@@ -1,1 +1,46 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Explore sample roles and keep track of application preparation."><title>কাজেরসেতু | Find your next opportunity.</title><link rel="stylesheet" href="./styles.css"></head><body><a class="skip" href="#main">Skip to content</a><header><strong lang="bn">কাজেরসেতু</strong><span class="eyebrow">Bangladesh · Early prototype</span></header><main id="main"><p class="eyebrow">Simple tools for everyday tasks</p><h1>Find your next opportunity.</h1><p class="lead">Explore sample roles and keep track of application preparation.</p><div class="notice">DEMO ONLY — fictional roles and employers. No real vacancies or applications are offered here.</div><section class="panel"><h2>কাজ খুঁজুন · Explore sample roles</h2><label for="query">Role or skill</label><input id="query" type="search" placeholder="For example: customer service"><label for="location">Location</label><select id="location"><option value="">All locations</option><option>Dhaka</option><option>Chattogram</option><option>Remote</option></select><label><input id="savedOnly" type="checkbox">Only saved roles</label><p id="count" role="status"></p><p id="storage" role="status"></p></section><div id="jobs" class="grid"></div><section class="panel"><h2>Know what to verify</h2><p>Use the <a href="./role-guide.html">Bangla/English job circular question guide</a> to practise checking fictional roles. It is an offline FAQ, not live AI or a vacancy service.</p></section><section class="panel"><h2>Before applying</h2><p>Verify a real opening on the employer’s original site. Do not share passwords, OTPs or bank details with recruiters.</p><a href="https://www.bdjobs.com/tos.asp">Read Bdjobs’ applicant warnings</a></section><noscript><p class="notice">Interactive features require JavaScript. Official links remain available.</p></noscript></main><footer><p>Independent prototype. Not a government service. Progress, where saved, stays in this browser; no account or document upload is needed.</p><a href="https://github.com/ZRSaimun/kajer-setu-bd/issues/new">Report a problem on GitHub</a><p>Reports are public. Do not include identity numbers, documents, private contact details or other sensitive information.</p></footer><script type="module" src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="কাজেরসেতু: কল্পিত চাকরির উদাহরণ খুঁজুন, যোগ্যতা যাচাইয়ের প্রশ্ন শিখুন এবং প্রস্তুতির তালিকা তৈরি করুন। কোনো লাইভ নিয়োগ নেই।">
+<title>কাজেরসেতু | চাকরি খোঁজার অনুশীলন</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body class="career-board">
+<a class="skip" href="#main">মূল অংশে যান</a>
+<header class="career-header">
+  <a class="career-brand" href="./index.html" aria-label="কাজেরসেতু, প্রথম পাতা"><span class="brand-symbol" aria-hidden="true">ক</span><span>কাজেরসেতু<small>Career preparation desk</small></span></a>
+  <nav aria-label="প্রধান নেভিগেশন"><a href="#search-panel">পদ খুঁজুন</a><a href="./role-guide.html">বিজ্ঞপ্তি যাচাই</a><a href="#detail-heading">প্রস্তুতির তালিকা</a></nav>
+</header>
+<main id="main" class="career-main">
+  <div class="career-intro">
+    <div><p class="career-kicker">চাকরির প্রস্তুতি • Bangladesh</p><h1>চাকরি খোঁজার আগে<br><em>তথ্য যাচাই করুন।</em></h1><p>নমুনা পদ বাছুন, প্রয়োজনীয় দক্ষতা দেখুন, তারপর আসল নিয়োগ বিজ্ঞপ্তি যাচাইয়ের তালিকা ব্যবহার করুন।</p></div>
+    <aside class="demo-flag" role="note"><strong>শুধু অনুশীলনের জন্য</strong><p>এখানে সব পদ ও নিয়োগদাতা কল্পিত। কোনো বর্তমান চাকরি, বেতন, যোগ্যতা, শেষ তারিখ বা আবেদনের লিংক যাচাই করা হয়নি।</p></aside>
+  </div>
+  <div class="career-workspace">
+    <aside class="career-filters" id="search-panel" aria-labelledby="search-heading">
+      <div class="section-heading"><span>01 / SEARCH</span><h2 id="search-heading">পদ বাছাই</h2></div>
+      <label for="query">পদ বা দক্ষতা / Search</label><input id="query" type="search" placeholder="e.g. customer service" autocomplete="off">
+      <label for="location">কাজের ধরন / Location</label><select id="location"><option value="">সব এলাকা / All</option><option value="Dhaka">Dhaka</option><option value="Chattogram">Chattogram</option><option value="Remote">Remote</option></select>
+      <label class="filter-check"><input id="savedOnly" type="checkbox"> শুধু সংরক্ষিত নমুনা</label>
+      <button type="button" id="clearFilters" class="career-reset">ফিল্টার মুছুন / Reset</button>
+      <div class="filter-help"><strong>কীভাবে ব্যবহার করবেন?</strong><ol><li>নমুনা পদ খুঁজুন</li><li>বিস্তারিত ও দক্ষতা দেখুন</li><li>আসল বিজ্ঞপ্তি যাচাই করুন</li></ol></div>
+    </aside>
+    <section class="career-results" aria-labelledby="results-heading">
+      <div class="section-heading"><span>02 / EXPLORE</span><h2 id="results-heading">নমুনা পদের তালিকা</h2></div>
+      <p id="count" role="status" aria-live="polite">নমুনা পদ লোড হচ্ছে…</p>
+      <p id="storage" role="status" aria-live="polite" class="storage-note"></p>
+      <div id="jobs" class="career-role-list" aria-label="নমুনা পদের তালিকা"></div>
+    </section>
+    <section class="career-detail" aria-labelledby="detail-heading">
+      <div class="section-heading"><span>03 / PREPARE</span><h2 id="detail-heading">পদের বিস্তারিত</h2></div>
+      <div id="roleDetail" aria-live="polite" aria-atomic="true"><p>বিস্তারিত দেখতে একটি নমুনা পদ বাছুন।</p></div>
+    </section>
+  </div>
+  <section class="career-next" aria-labelledby="next-heading"><div><p class="career-kicker">NEXT STEP</p><h2 id="next-heading">আসল বিজ্ঞপ্তি যাচাই না করে আবেদন নয়</h2><p>উৎস, যোগ্যতা, শেষ তারিখ ও ফি নিজে মিলিয়ে দেখুন। কোনো NID, পাসওয়ার্ড বা OTP এখানে দেবেন না।</p></div><div class="next-links"><a href="./role-guide.html">যাচাইয়ের প্রশ্ন শিখুন</a><a href="#detail-heading">প্রস্তুতির তালিকা দেখুন</a><a href="https://alljobs.teletalk.com.bd/" target="_blank" rel="noopener noreferrer">সরকারি নিয়োগ ডিরেক্টরি (বাইরের সাইট)</a></div></section>
+  <noscript><p class="notice">JavaScript বন্ধ থাকলে তালিকা ও ফিল্টার চলবে না। <a href="https://alljobs.teletalk.com.bd/">মূল নিয়োগ ডিরেক্টরি</a> এবং <a href="./role-guide.html">যাচাই নির্দেশিকা</a> দেখতে পারবেন।</p></noscript>
+</main>
+<footer class="career-footer"><p>স্বাধীন শিক্ষামূলক প্রোটোটাইপ — সরকারি বা নিয়োগদাতা প্রতিষ্ঠান নয়। সংরক্ষিত নমুনা শুধু এই ব্রাউজারে থাকে।</p><p><a href="https://github.com/ZRSaimun/kajer-setu-bd/issues/new?title=Website%20feedback">Was this helpful? / মতামত</a> · <a href="https://github.com/ZRSaimun/kajer-setu-bd/issues/new?title=Incorrect%20information">ভুল তথ্য জানান</a></p><p>GitHub-এ দেওয়া অভিযোগ প্রকাশ্য। ব্যক্তিগত নথি, ফোন নম্বর, NID বা অন্য গোপন তথ্য দেবেন না। লিংকটি রিপোর্ট পাঠায় না; GitHub-এ নিজে জমা দিতে হবে।</p></footer>
+<script type="module" src="./app.js"></script>
+</body></html>
