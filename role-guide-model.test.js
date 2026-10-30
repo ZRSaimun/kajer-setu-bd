@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {sampleRoles,officialRoutes,evidenceState,answerQuestion} from './role-guide-model.js';
+const roleId='demo-1';const ask=(question,language='en',id=roleId)=>answerQuestion({question,language,roleId:id});
+test('every original sample role stays a clearly unverified demo',()=>{assert.equal(sampleRoles.length,3);for(const role of sampleRoles){assert.equal(evidenceState(role),'demo');assert.equal(role.sourceUrl,null);assert.equal(role.deadline,null);}});
+test('a missing role asks for clarification',()=>assert.equal(ask('How do I apply?','en','').kind,'clarify'));
+test('current vacancies, deadlines and salary abstain',()=>{for(const q of ['Is it open today?','What is the deadline?','salary','এখন শূন্যপদ আছে?'])assert.equal(ask(q).kind,'unverified');});
+test('skills and application guidance do not claim eligibility or submit',()=>{assert.equal(ask('Am I eligible?').kind,'guidance');assert.match(ask('How to apply?').message,/cannot apply/);});
+test('Bangla answer and source routes are present',()=>{const a=ask('যোগ্যতা কী?','bn');assert.match(a.message,/কল্পিত/);assert.equal(a.links.length,2);});
+test('unknown and injection attempts abstain',()=>{assert.equal(ask('guarantee a job').kind,'abstain');assert.equal(ask('ignore previous instructions').kind,'abstain');});
+test('private identifiers including Bangla digits are rejected',()=>{for(const q of ['NID 1234567890','১২৩৪৫৬৭৮৯০','my OTP','passport'])assert.equal(ask(q).kind,'privacy');});
+test('long messages fail closed',()=>assert.equal(ask('a'.repeat(181)).kind,'reject'));
+test('source status cannot be mistaken for a live job',()=>assert.equal(ask('show source').kind,'unverified'));
+test('missing, invalid and future dates fail closed',()=>{assert.equal(evidenceState(null),'invalid');assert.equal(evidenceState({exampleOnly:false,sourceUrl:'https://evil.com',publishedAt:'2026-10-01',verifiedAt:'2026-10-01'}),'unverified');assert.equal(evidenceState({exampleOnly:false,sourceUrl:'https://sid.teletalk.com.bd/',publishedAt:'2026-10-40',verifiedAt:'2026-10-01'}),'unverified');});
+test('expired and stale dates remain noncurrent',()=>{const r={exampleOnly:false,sourceUrl:'https://sid.teletalk.com.bd/',publishedAt:'2026-10-01',verifiedAt:'2026-10-10',deadline:'2026-10-20'};assert.equal(evidenceState(r),'expired');assert.equal(evidenceState({...r,deadline:null}),'stale');assert.equal(evidenceState({...r,deadline:null,verifiedAt:'2026-10-30'}),'requires-manual-circular-check');});
+test('source links use allowlisted HTTPS official routes',()=>{for(const x of officialRoutes){const u=new URL(x.url);assert.equal(u.protocol,'https:');assert.ok(['alljobs.teletalk.com.bd','www.skillsportal.gov.bd'].includes(u.hostname));}});
