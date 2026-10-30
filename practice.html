@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="bn">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Make a private Bangla or English practice plan for fictional job skills. No live vacancies or personal data.">
+<title>দক্ষতা অনুশীলন | KajerSetu</title>
+<link rel="stylesheet" href="./styles.css"><link rel="stylesheet" href="./practice.css"></head>
+<body><a class="skip" href="#main">মূল অংশে যান · Skip to content</a>
+<header><a href="./index.html" lang="bn">← কাজেরসেতু</a><span class="eyebrow">Private skill practice</span></header>
+<main id="main">
+<p class="eyebrow">A small plan for your next practice session</p>
+<h1>দক্ষতা অনুশীলন <span class="practice-subtitle">Plan a practice session</span></h1>
+<p class="lead">একটি নমুনা পদ বেছে নিয়ে নিজের অনুশীলনের পরিকল্পনা করুন। Choose a fictional role, mark skills already practised, and make a short plan.</p>
+<div class="notice" role="note"><strong>DEMO ONLY.</strong> Fictional roles and example skills, not real employer requirements. No vacancies, eligibility checks, applications or AI. Your choices are not saved or sent.</div>
+<div class="practice-layout">
+<section class="panel" aria-labelledby="setup-heading">
+<h2 id="setup-heading">আপনার পরিকল্পনা · Your plan</h2>
+<form id="practice-form">
+<label for="practice-language">Language / ভাষা</label>
+<select id="practice-language"><option value="bn">বাংলা</option><option value="en">English</option></select>
+<label for="practice-role">Sample role / নমুনা পদ</label>
+<select id="practice-role" required><option value="">পদ বেছে নিন · Choose a role</option></select>
+<fieldset id="practice-skills"><legend>Already practised / আগে অনুশীলন করেছেন</legend><p>Choose a sample role to see example skills.</p></fieldset>
+<label for="practice-minutes">Practice time / সময়</label>
+<select id="practice-minutes"><option value="15">15 minutes / ১৫ মিনিট</option><option value="30" selected>30 minutes / ৩০ মিনিট</option><option value="60">60 minutes / ৬০ মিনিট</option></select>
+<div class="actions"><button type="submit">Make plan / পরিকল্পনা তৈরি</button><button type="button" class="secondary" id="practice-clear">Clear / মুছুন</button></div>
+</form>
+<p id="practice-status" role="status" aria-live="polite"></p>
+</section>
+<section class="panel" aria-labelledby="plan-heading">
+<h2 id="plan-heading">অনুশীলনের ধাপ · Practice steps</h2>
+<div id="practice-result" tabindex="-1" aria-label="Practice plan">
+<p>Choose a sample role to begin. Nothing is stored or sent.</p></div>
+<div class="actions"><button type="button" id="practice-print" class="secondary" disabled>Print plan / প্রিন্ট</button></div>
+<p class="muted">Print only when you choose. If printing is unavailable, the steps remain readable here. Reloading clears the plan.</p>
+</section></div>
+<section class="panel" aria-labelledby="source-heading"><h2 id="source-heading">Check real opportunities separately</h2>
+<p>Sample exercises do not establish a job's requirements. Check the original employer circular before acting. Training links are general directories, not endorsements of specific courses.</p>
+<ul><li><a href="https://alljobs.teletalk.com.bd/" target="_blank" rel="noopener noreferrer">Teletalk recruitment directory</a></li>
+<li><a href="https://skillsportal.gov.bd/" target="_blank" rel="noopener noreferrer">National Skills Portal</a></li></ul>
+</section>
+<noscript><p class="notice">JavaScript is required to generate a plan. The source links above and <a href="./index.html">sample roles</a> remain available.</p></noscript>
+</main><footer><p>Independent educational prototype. No identity numbers, CVs or passwords are requested.</p></footer>
+<script type="module" src="./practice.js"></script>
+</body></html>
