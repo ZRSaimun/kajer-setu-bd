@@ -15,3 +15,5 @@ jobs:
 
       - run: node --check role-guide.js
       - run: node --check role-guide-model.js
+
+      - run: npm run build
